@@ -6,6 +6,7 @@ export interface TravelQuery {
   sauna: number;
   tennen: number;
   rank: number;
+  pub: number;
 }
 
 export const getTravelQuery = (request: Request): TravelQuery => {
@@ -14,6 +15,7 @@ export const getTravelQuery = (request: Request): TravelQuery => {
   const sauna = parseInt(request.query["sauna"] as string);
   const tennen = parseInt(request.query["tennen"] as string);
   const rank = parseInt(request.query["rank"] as string);
+  const pub = parseInt(request.query["public"] as string);
 
   return {
     moveTime,
@@ -21,5 +23,6 @@ export const getTravelQuery = (request: Request): TravelQuery => {
     sauna,
     tennen,
     rank,
+    pub,
   };
 };

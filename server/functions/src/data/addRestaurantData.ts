@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 
-class Restaurant {
+export class Restaurant {
   constructor(
     name: string,
     imageUrl: string[],
