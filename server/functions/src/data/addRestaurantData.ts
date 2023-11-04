@@ -7,7 +7,6 @@ class Restaurant {
     latitude: number,
     longitude: number,
     distance: number,
-    alcohol: boolean,
     genre: number
   ) {
     this.name = name;
@@ -15,7 +14,6 @@ class Restaurant {
     this.latitude = latitude;
     this.longitude = longitude;
     this.distance = distance;
-    this.alcohol = alcohol;
     this.genre = genre;
   }
 
@@ -24,7 +22,6 @@ class Restaurant {
   latitude: number;
   longitude: number;
   distance: number;
-  alcohol: boolean;
   genre: number;
 }
 
@@ -39,7 +36,6 @@ const restaurants: Restaurant[] = [
     35.563548,
     139.7130231,
     1,
-    true,
     1
   ),
   new Restaurant(
@@ -52,7 +48,6 @@ const restaurants: Restaurant[] = [
     35.5616154,
     139.7077354,
     2,
-    true,
     1
   ),
   new Restaurant(
@@ -65,7 +60,6 @@ const restaurants: Restaurant[] = [
     35.563537,
     139.7128767,
     1,
-    true,
     2
   ),
   new Restaurant(
@@ -78,7 +72,6 @@ const restaurants: Restaurant[] = [
     35.562,
     139.7100107,
     2,
-    true,
     2
   ),
   new Restaurant(
@@ -91,7 +84,6 @@ const restaurants: Restaurant[] = [
     35.5629749,
     139.711337,
     1,
-    true,
     4
   ),
   new Restaurant(
@@ -104,7 +96,6 @@ const restaurants: Restaurant[] = [
     35.5619727,
     139.7100965,
     2,
-    true,
     4
   ),
   new Restaurant(
@@ -117,7 +108,6 @@ const restaurants: Restaurant[] = [
     35.5619616,
     139.7112708,
     1,
-    true,
     3
   ),
   new Restaurant(
@@ -130,7 +120,6 @@ const restaurants: Restaurant[] = [
     35.5624677,
     139.7176205,
     2,
-    true,
     3
   ),
 ];

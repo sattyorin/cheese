@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 
-class Sento {
+export class Sento {
   constructor(
     name: string,
     imageUrl: string[],
@@ -8,17 +8,15 @@ class Sento {
     longitude: number,
     distance: number,
     tennen: boolean,
-    sauna: boolean,
-    ganban: boolean
+    sauna: boolean
   ) {
     this.name = name;
     this.imageUrl = imageUrl;
     this.latitude = latitude;
     this.longitude = longitude;
     this.distance = distance;
-    this.tennen = tennen ?? false;
-    this.sauna = sauna ?? false;
-    this.ganban = ganban ?? false;
+    this.tennen = tennen;
+    this.sauna = sauna;
   }
 
   name: string;
@@ -28,7 +26,6 @@ class Sento {
   distance: number;
   tennen: boolean;
   sauna: boolean;
-  ganban: boolean;
 }
 
 const sentos: Sento[] = [
@@ -43,8 +40,7 @@ const sentos: Sento[] = [
     139.7154401,
     1,
     true,
-    true,
-    false
+    true
   ),
   new Sento(
     "蒲田福の湯",
@@ -57,8 +53,7 @@ const sentos: Sento[] = [
     139.7154401,
     1,
     true,
-    true,
-    false
+    true
   ),
   new Sento(
     "改正湯",
@@ -71,7 +66,6 @@ const sentos: Sento[] = [
     139.7115647,
     1,
     true,
-    false,
     false
   ),
   new Sento(
@@ -85,8 +79,7 @@ const sentos: Sento[] = [
     139.3950095,
     2,
     false,
-    true,
-    false
+    true
   ),
   new Sento(
     "はすぬま温泉",
@@ -99,8 +92,7 @@ const sentos: Sento[] = [
     139.7060371,
     2,
     true,
-    true,
-    false
+    true
   ),
   new Sento(
     "寿湯",
@@ -113,8 +105,7 @@ const sentos: Sento[] = [
     139.7215602,
     2,
     false,
-    true,
-    false
+    true
   ),
   new Sento(
     "天神湯",
@@ -127,8 +118,7 @@ const sentos: Sento[] = [
     139.7245765,
     3,
     false,
-    true,
-    false
+    true
   ),
   new Sento(
     "新田浴場",
@@ -141,8 +131,7 @@ const sentos: Sento[] = [
     139.688853,
     3,
     false,
-    true,
-    false
+    true
   ),
   new Sento(
     "天然温泉平和島",
@@ -154,7 +143,6 @@ const sentos: Sento[] = [
     35.5847386,
     139.7382317,
     3,
-    true,
     true,
     true
   ),

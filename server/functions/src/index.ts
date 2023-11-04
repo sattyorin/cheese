@@ -10,9 +10,22 @@
 import { onRequest } from "firebase-functions/v2/https";
 import * as admin from "firebase-admin";
 import { log } from "firebase-functions/logger";
+import { getTravelQuery } from "./lib/coupon/getQuery";
+import { getSento } from "./lib/coupon/getSento";
 
 admin.initializeApp();
 
 export const addData = onRequest(async (request, response) => {
   log("addData was called.");
+});
+
+export const getTravel = onRequest(async (request, response) => {
+  const travelQuery = getTravelQuery(request);
+
+  const { genre, ...getSentoArgs } = travelQuery;
+  // const { sauna, tennen, ...getRestaurantArgs } = travelQuery;
+
+  const sento = await getSento(getSentoArgs);
+
+  response.status(200).send(sento);
 });
