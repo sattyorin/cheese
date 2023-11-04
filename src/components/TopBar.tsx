@@ -1,4 +1,11 @@
-import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Link,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
@@ -18,9 +25,15 @@ export default function TopBar() {
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
         <Box sx={{ display: 'flex' }}>
-          <IconButton size="large" color="inherit">
-            <EmailIcon />
-          </IconButton>
+          <Link
+            href="mailto:someone@example.com?subject=お問い合わせ"
+            color="inherit"
+            underline="none"
+          >
+            <IconButton size="large" color="inherit">
+              <EmailIcon />
+            </IconButton>
+          </Link>
           <IconButton size="large" color="inherit">
             <AccountCircleIcon />
           </IconButton>
