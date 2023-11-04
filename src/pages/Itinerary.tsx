@@ -65,7 +65,6 @@ export default function Itinerary() {
     process.env.REACT_APP_HOSTNAME +
     '/getTravel?moveTime=10&genre=1&sauna=1&tennen=1&rank=3';
   useLayoutEffect(() => {
-    console.log(apiUri);
     fetch(apiUri)
       .then((res) => res.json())
       .then((data: ApiResponse) => {
