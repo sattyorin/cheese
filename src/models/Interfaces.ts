@@ -25,8 +25,9 @@ export interface Restaurant {
   longitude: number;
 }
 
-export interface UserData {
+export interface Itinerary {
   id: number;
+  userId: number;
   sento: Sento;
   sentoCoupon: Coupon;
   restaurant: Restaurant;
