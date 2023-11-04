@@ -2,9 +2,11 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
+  Button,
   Card,
   CardHeader,
   Checkbox,
+  Divider,
   FormControl,
   FormControlLabel,
   FormGroup,
@@ -14,6 +16,7 @@ import {
   MenuItem,
   Paper,
   Select,
+  Stack,
   TextField,
   Toolbar,
   Typography,
@@ -44,7 +47,7 @@ export default function Home() {
   const [genre, setGenre] = useState('1');
   const [alcohol, setAlcohol] = useState('0');
   const [sauna, setSauna] = useState('0');
-  const [ganban, setGanban] = useState('0');
+  const [kusuriyu, setKusuriyu] = useState('0');
   const [tennnenn, setTennenn] = useState('0');
 
   const backgroundImageUrl = 'url(./../images/mountains.jpg)';
@@ -60,88 +63,87 @@ export default function Home() {
         }}
       >
         <Box height="48px" />
-        <Box p={4}>
-          <Card sx={{ opacity: 0.85 }}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <MobileTimePicker
-                value={time}
-                onChange={(newValue) => {
-                  if (newValue! <= new Date()) {
-                    setTimeErrorMessage('未来の時間を選択してください');
-                  } else {
-                    setTime(newValue!);
-                    setTimeErrorMessage(null);
-                    console.log(time.toISOString());
-                  }
-                }}
-                views={['hours']}
-              />
-              {timeErrorMessage && (
-                <Typography variant="caption" color="error">
-                  {timeErrorMessage}
-                </Typography>
-              )}
-            </LocalizationProvider>
-
-            <br />
-            <FormControl>
-              <Select
-                value={moveByTrain}
-                onChange={(e) => {
-                  setMoveByTrain(e.target.value);
-                }}
-              >
-                <MenuItem value={0}>徒歩</MenuItem>
-                <MenuItem value={1}>電車</MenuItem>
-              </Select>
-            </FormControl>
-            <span>で</span>
-            <FormControl>
-              <Select
-                value={moveTime}
-                onChange={(e) => {
-                  setMoveTime(e.target.value);
-                }}
-              >
-                <MenuItem value={10}>10</MenuItem>
-                <MenuItem value={15}>15</MenuItem>
-                <MenuItem value={20}>20</MenuItem>
-              </Select>
-            </FormControl>
-            <span>分</span>
-            <br />
-            <FormControl>
-              <Select
-                value={genre}
-                onChange={(e) => {
-                  setGenre(e.target.value);
-                }}
-              >
-                <MenuItem value={1}>和食</MenuItem>
-                <MenuItem value={2}>洋食</MenuItem>
-                <MenuItem value={3}>オリエンタル</MenuItem>
-                <MenuItem value={4}>中華</MenuItem>
-              </Select>
-            </FormControl>
-            <br />
+        <Box p={3}>
+          <Card sx={{ opacity: 0.95, p: 3 }}>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <span>今日は</span>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <MobileTimePicker
+                  sx={{ width: '80px' }}
+                  value={time}
+                  onChange={(newValue) => {
+                    if (newValue! <= new Date()) {
+                      setTimeErrorMessage('未来の時間を選択してください');
+                    } else {
+                      setTime(newValue!);
+                      setTimeErrorMessage(null);
+                      console.log(time.toISOString());
+                    }
+                  }}
+                  views={['hours']}
+                />
+                {timeErrorMessage && (
+                  <Typography variant="caption" color="error">
+                    {timeErrorMessage}
+                  </Typography>
+                )}
+              </LocalizationProvider>
+              <span>まで旅行。</span>
+            </Stack>
+            <Stack direction="row" spacing={1} alignItems="center" mt={2}>
+              <FormControl>
+                <Select
+                  value={moveByTrain}
+                  onChange={(e) => {
+                    setMoveByTrain(e.target.value);
+                  }}
+                >
+                  <MenuItem value={0}>徒歩</MenuItem>
+                  <MenuItem value={1}>電車</MenuItem>
+                </Select>
+              </FormControl>
+              <span>で</span>
+              <FormControl>
+                <Select
+                  value={moveTime}
+                  onChange={(e) => {
+                    setMoveTime(e.target.value);
+                  }}
+                >
+                  <MenuItem value={10}>10</MenuItem>
+                  <MenuItem value={15}>15</MenuItem>
+                  <MenuItem value={20}>20</MenuItem>
+                </Select>
+              </FormControl>
+              <span>分。</span>
+            </Stack>
+            <Stack direction="row" spacing={1} alignItems="center" mt={2}>
+              <FormControl>
+                <Select
+                  value={genre}
+                  onChange={(e) => {
+                    setGenre(e.target.value);
+                  }}
+                >
+                  <MenuItem value={1}>和食</MenuItem>
+                  <MenuItem value={2}>洋食</MenuItem>
+                  <MenuItem value={3}>オリエンタル</MenuItem>
+                  <MenuItem value={4}>中華</MenuItem>
+                </Select>
+              </FormControl>
+              <span>の気分。</span>
+            </Stack>
+          </Card>
+          <Card sx={{ p: 3, mt: 3, opacity: 0.95 }}>
             <FormGroup>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={alcohol === '1' ? true : false}
-                    onChange={(e) => setAlcohol(e.target.checked ? '1' : '0')}
+                    checked={sauna === '1' ? true : false}
+                    onChange={(e) => setSauna(e.target.checked ? '1' : '0')}
                   />
                 }
-                label="Alcohol"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={ganban === '1' ? true : false}
-                    onChange={(e) => setGanban(e.target.checked ? '1' : '0')}
-                  />
-                }
-                label="Ganban"
+                label="サウナ"
               />
               <FormControlLabel
                 control={
@@ -150,9 +152,19 @@ export default function Home() {
                     onChange={(e) => setTennenn(e.target.checked ? '1' : '0')}
                   />
                 }
-                label="tennnenn"
+                label="天然温泉"
               />
             </FormGroup>
+          </Card>
+          <Card sx={{ mt: 3, opacity: 0.9 }}>
+            <Button
+              variant="text"
+              size="large"
+              color="inherit"
+              sx={{ paddingY: 2, fontSize: 24, width: '100%' }}
+            >
+              旅に出る
+            </Button>
           </Card>
         </Box>
       </div>
