@@ -6,6 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Itinerary from './pages/Itinerary';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import History from './pages/History';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -23,12 +32,19 @@ const router = createBrowserRouter([
     path: '/itinerary',
     element: <Itinerary />,
   },
+  {
+    path: '/history',
+    element: <History />,
+  },
 ]);
 
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </ThemeProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
