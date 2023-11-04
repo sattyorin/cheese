@@ -26,7 +26,8 @@ import { format } from 'date-fns';
 import RankEmblem from './../images/Gold.png';
 
 export default function History() {
-  const [nowTime, setNowTime] = useState(format(new Date(), 'HH:mm'));
+  const [nowTime, setNowTime] = useState(new Date());
+  const [startTime, setStartTime] = useState<Date | null>(null);
   const mockData = [
     {
       date: new Date(),
@@ -54,8 +55,8 @@ export default function History() {
   useEffect(() => {
     setInterval(() => {
       const date = new Date();
-      setNowTime(format(date, 'HH:mm'));
-    }, 60000);
+      setNowTime(date);
+    }, 1000);
   }, []);
 
   return (
@@ -67,17 +68,33 @@ export default function History() {
           <Card>
             <Stack alignItems="center">
               <Typography variant="h6" align="center" mt={5}>
-                現在時刻
+                {startTime === null ? '現在時刻' : '経過時間'}
               </Typography>
               <Typography variant="h2" align="center" mb={2}>
-                {nowTime}
+                {startTime === null
+                  ? format(nowTime, 'HH:mm')
+                  : Math.floor(
+                      (nowTime.getTime() - (startTime.getTime() - 1000)) / 1000,
+                    )}
+                {startTime === null ? (
+                  <></>
+                ) : (
+                  <span style={{ fontSize: 24, marginLeft: 4 }}>秒</span>
+                )}
               </Typography>
               <Button
                 variant="contained"
                 size="large"
                 sx={{ paddingX: 3, marginBottom: 5 }}
+                onClick={() => {
+                  if (startTime === null) {
+                    setStartTime(new Date());
+                  } else {
+                    setStartTime(null);
+                  }
+                }}
               >
-                開始
+                {startTime === null ? '開始' : '終了'}
               </Button>
             </Stack>
           </Card>
