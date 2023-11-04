@@ -19,6 +19,7 @@ import { addSentoData } from "./data/addSentoData";
 import { addCouponData } from "./data/addCoupon";
 import { addRestaurantData } from "./data/addRestaurantData";
 import { addAlbumData } from "./lib/album/addAlbumData";
+import { getAlbumData } from "./lib/album/getAlbumData";
 
 admin.initializeApp();
 
@@ -53,4 +54,13 @@ export const getTravel = onRequest(async (request, response) => {
     restaurant: restaurant,
     restaurantCoupon: restaurantCoupon,
   });
+});
+
+export const getAlbum = onRequest(async (request, response) => {
+  response.set("Access-Control-Allow-Origin", "*");
+  response.set("Access-Control-Allow-Methods", "GET");
+
+  const albums = await getAlbumData();
+
+  response.status(200).send(albums);
 });
