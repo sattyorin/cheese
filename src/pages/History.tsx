@@ -9,10 +9,21 @@ import TimelineOppositeContent, {
 } from '@mui/lab/TimelineOppositeContent';
 import TopBar from '../components/TopBar';
 import BottomBar from '../components/BottomBar';
-import { Box, Button, Card, Grid, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Card,
+  CardMedia,
+  Chip,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+} from '@mui/material';
 import TimelineOneline from '../components/TimelineOneline';
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
+import RankEmblem from './../images/Gold.png';
 
 export default function History() {
   const [nowTime, setNowTime] = useState(format(new Date(), 'HH:mm'));
@@ -73,20 +84,32 @@ export default function History() {
         </Grid>
         <Grid item xs={12}>
           <Card>
-            <Stack alignItems="center">
-              <Typography variant="h6" align="center" mt={5}>
-                現在時刻
-              </Typography>
-              <Typography variant="h2" align="center" mb={2}>
-                {nowTime}
-              </Typography>
-              <Button
-                variant="contained"
-                size="large"
-                sx={{ paddingX: 3, marginBottom: 5 }}
-              >
-                開始
-              </Button>
+            <Stack
+              direction="row"
+              spacing={3}
+              paddingY={5}
+              paddingX={3}
+              alignItems="center"
+            >
+              <CardMedia
+                component="img"
+                sx={{ width: 80, height: 75 }}
+                image={RankEmblem}
+                alt="Live from space album cover"
+              />
+              <Stack spacing={1}>
+                <Typography variant="h6">会員ランク</Typography>
+                <Typography
+                  variant="h4"
+                  sx={{ fontWeight: 'bold', marginX: 0 }}
+                >
+                  ゴールド
+                </Typography>
+                <Stack spacing={1} direction="row">
+                  <Chip label="100円引き" size="small" />
+                  <Chip label="50円引き" size="small" />
+                </Stack>
+              </Stack>
             </Stack>
           </Card>
         </Grid>
