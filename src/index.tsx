@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
+import Users from './pages/Users';
 import Itinerary from './pages/Itinerary';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: '/history',
     element: <History />,
+  },
+  {
+    path: '/users',
+    element: <Users />,
   },
 ]);
 
