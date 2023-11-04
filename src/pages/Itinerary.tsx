@@ -7,6 +7,7 @@ import {
   CardContent,
   CardMedia,
   Chip,
+  CircularProgress,
   Stack,
   Typography,
 } from '@mui/material';
@@ -76,7 +77,7 @@ export default function Itinerary() {
     <>
       <TopBar />
       <Box height="48px" />
-      {data && (
+      {data ? (
         <>
           <Typography variant="h6" p={4} pb={1} align="center">
             {data.sento.name}
@@ -136,6 +137,10 @@ export default function Itinerary() {
             />
           </Card>
         </>
+      ) : (
+        <Stack alignContent="center" alignItems="center" mt={4}>
+          <CircularProgress />
+        </Stack>
       )}
       <Box height="56px" />
       <BottomBar />
