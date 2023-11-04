@@ -13,7 +13,7 @@ export const addAlbumData = async (
 
   const length = (await ref.get()).size;
 
-  const userId = "user" + length.toString;
+  const userId = "user" + length.toString();
 
   await ref.add(
     JSON.parse(
