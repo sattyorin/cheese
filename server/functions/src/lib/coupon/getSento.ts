@@ -28,10 +28,10 @@ export const getSento = async ({
     .limit(1)
     .get();
 
-  var sentoData;
+  var sentoData: string = "";
   sentoCandidate.forEach((sento) => {
     sentoData = JSON.stringify(sento.data());
   });
 
-  return sentoData as unknown as string;
+  return JSON.parse(sentoData);
 };

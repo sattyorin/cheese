@@ -12,6 +12,7 @@ import * as admin from "firebase-admin";
 import { log } from "firebase-functions/logger";
 import { getTravelQuery } from "./lib/coupon/getQuery";
 import { getSento } from "./lib/coupon/getSento";
+import { getSentoCoupon } from "./lib/coupon/getSentoCoupon";
 
 admin.initializeApp();
 
@@ -26,6 +27,10 @@ export const getTravel = onRequest(async (request, response) => {
   // const { sauna, tennen, ...getRestaurantArgs } = travelQuery;
 
   const sento = await getSento(getSentoArgs);
+  const sentoCoupon = await getSentoCoupon(travelQuery.rank);
 
-  response.status(200).send(sento);
+  response.status(200).send({
+    sento: sento,
+    sentoCoupon: sentoCoupon,
+  });
 });
