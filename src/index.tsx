@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Users from './pages/Users';
+import Boards from './pages/Boards';
 import Itinerary from './pages/Itinerary';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: '/users',
     element: <Users />,
+  },
+  {
+    path: '/Boards',
+    element: <Boards />,
   },
 ]);
 
