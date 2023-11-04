@@ -15,6 +15,9 @@ import {
   Card,
   CardMedia,
   Chip,
+  Dialog,
+  DialogContentText,
+  DialogTitle,
   Divider,
   Grid,
   Stack,
@@ -24,10 +27,15 @@ import TimelineOneline from '../components/TimelineOneline';
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import RankEmblem from './../images/Gold.png';
+import { useNavigate } from 'react-router-dom';
+import backgroundImage from './../images/milky-way.jpg';
 
 export default function History() {
   const [nowTime, setNowTime] = useState(new Date());
   const [startTime, setStartTime] = useState<Date | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const navigate = useNavigate();
   const mockData = [
     {
       date: new Date(),
@@ -63,9 +71,20 @@ export default function History() {
     <>
       <TopBar />
       <Box height="48px" />
-      <Grid p={3} spacing={3} container>
+      <Grid
+        p={3}
+        spacing={3}
+        container
+        sx={{
+          background: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed' /*--背景画像の固定--*/,
+          backgroundRepeat: 'no-repeat' /*--背景画像の繰り返し--*/,
+          backgroundOosition: 'center center' /*--背景画像の位置--*/,
+        }}
+      >
         <Grid item xs={12}>
-          <Card>
+          <Card sx={{ opacity: 0.95 }}>
             <Stack alignItems="center">
               <Typography variant="h6" align="center" mt={5}>
                 {startTime === null ? '現在時刻' : '経過時間'}
@@ -85,12 +104,21 @@ export default function History() {
               <Button
                 variant="contained"
                 size="large"
-                sx={{ paddingX: 3, marginBottom: 5 }}
+                sx={{
+                  paddingX: 3,
+                  marginBottom: 5,
+                  bgcolor: 'white',
+                  fontWeight: 'bold',
+                }}
                 onClick={() => {
                   if (startTime === null) {
                     setStartTime(new Date());
                   } else {
+                    setModalOpen(true);
                     setStartTime(null);
+                    setTimeout(() => {
+                      navigate('/home');
+                    }, 3000);
                   }
                 }}
               >
@@ -100,7 +128,7 @@ export default function History() {
           </Card>
         </Grid>
         <Grid item xs={12}>
-          <Card>
+          <Card sx={{ opacity: 0.95 }}>
             <Stack
               direction="row"
               spacing={3}
@@ -131,7 +159,7 @@ export default function History() {
           </Card>
         </Grid>
         <Grid item xs={12}>
-          <Card>
+          <Card sx={{ opacity: 0.95 }}>
             <Typography variant="h6" align="center" mt={5}>
               利用履歴
             </Typography>
@@ -150,6 +178,20 @@ export default function History() {
       </Grid>
       <Box height="56px" />
       <BottomBar />
+      <Dialog onClose={() => setModalOpen(false)} open={modalOpen}>
+        <DialogContentText
+          paddingX={3}
+          fontSize="large"
+          fontWeight="bold"
+          pt={5}
+          pb={1}
+        >
+          おつかれさまでした。
+        </DialogContentText>
+        <DialogContentText paddingX={3} pb={5}>
+          今日の気分を教えてください。
+        </DialogContentText>
+      </Dialog>
     </>
   );
 }

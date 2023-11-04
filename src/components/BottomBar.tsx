@@ -23,9 +23,9 @@ export default function BottomBar() {
           onClick={() => navigate('/home')}
         />
         <BottomNavigationAction
-          label="アルバム"
+          label="旅程"
           icon={<LibraryBooksIcon />}
-          onClick={() => navigate('/album')}
+          onClick={() => navigate('/itinerary')}
         />
       </BottomNavigation>
     </Paper>

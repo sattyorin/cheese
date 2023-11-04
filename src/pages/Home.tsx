@@ -36,6 +36,7 @@ import TopBar from '../components/TopBar';
 import BottomBar from '../components/BottomBar';
 
 import backgroundImage from './../images/mountains.jpg';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const nowTime = new Date();
@@ -49,6 +50,8 @@ export default function Home() {
   const [sauna, setSauna] = useState('0');
   const [kusuriyu, setKusuriyu] = useState('0');
   const [tennnenn, setTennenn] = useState('0');
+
+  const navigate = useNavigate();
 
   const backgroundImageUrl = 'url(./../images/mountains.jpg)';
 
@@ -82,14 +85,14 @@ export default function Home() {
                   }}
                   views={['hours']}
                 />
-                {timeErrorMessage && (
-                  <Typography variant="caption" color="error">
-                    {timeErrorMessage}
-                  </Typography>
-                )}
               </LocalizationProvider>
               <span>まで旅行。</span>
             </Stack>
+            {timeErrorMessage && (
+              <Typography variant="caption" color="error">
+                {timeErrorMessage}
+              </Typography>
+            )}
             <Stack direction="row" spacing={1} alignItems="center" mt={2}>
               <FormControl>
                 <Select
@@ -162,6 +165,7 @@ export default function Home() {
               size="large"
               color="inherit"
               sx={{ paddingY: 2, fontSize: 24, width: '100%' }}
+              onClick={() => navigate('/itinerary')}
             >
               旅に出る
             </Button>
