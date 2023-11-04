@@ -29,9 +29,9 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "鳥万",
     [
-      "https://images.app.goo.gl/wPrD7JfkLVvDXA3f7",
-      "https://images.app.goo.gl/D6tpCFndXCmUVxKF8",
-      "https://images.app.goo.gl/EadfwC96rL2keizH7",
+      "https://san-tatsu.jp/assets/uploads/2020/08/07092816/b8dee31f8ace94f9597bab0b3bda8591-750x500.jpg",
+      "https://shochu-hiball.jp/shitamachi/column/monogatari/image/article16_img1.jpg",
+      "https://c-r.gnst.jp/mecicolle/photo/report/5b/f8/11444/11444_report_1_2.jpg",
     ],
     35.563548,
     139.7130231,
@@ -41,9 +41,9 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "豚番長 京急蒲田店",
     [
-      "https://images.app.goo.gl/4GkTgnPj7PACwrQx8",
-      "https://images.app.goo.gl/sSPxiVdJAUUCV4E5A",
-      "https://images.app.goo.gl/jh9xnQyLHUWHiSL19",
+      "https://imgfp.hotp.jp/IMGH/88/36/P037608836/P037608836_480.jpg",
+      "https://images.miil.me/j/030823c2-2e66-11ec-bd3e-06f1f1f9355e.orig.jpg",
+      "https://images.miil.me/j/4b07ce68-a41c-11eb-a9b6-06f1f1f9355e.orig.jpg",
     ],
     35.5616154,
     139.7077354,
@@ -53,9 +53,9 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "トンマーゾ",
     [
-      "https://images.app.goo.gl/YFdTAzkeFn6w9gsLA",
-      "https://images.app.goo.gl/LgBznQq8K4J6xgUU8",
-      "https://images.app.goo.gl/dHN6RQMcyfUWKdaz5",
+      "https://aqi.iccj.or.jp/wp-content/uploads/2019/08/DSC_0022.jpg",
+      "https://aqi.iccj.or.jp/wp-content/uploads/2019/08/640x640_rect_103132931.jpg",
+      "https://1000bero.net/wp-content/uploads/2023/03/IMG_7761-1360x1020.jpg",
     ],
     35.563537,
     139.7128767,
@@ -65,9 +65,9 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "ピザランド",
     [
-      "https://images.app.goo.gl/FkDKZD7HgSTojZJVA",
-      "https://images.app.goo.gl/BtDgaNu8k5fVhsSr7",
-      "https://images.app.goo.gl/hngXaUTT7AqBDXFc9",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/32517824.jpg",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/30591947.jpg",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/27915102.jpg",
     ],
     35.562,
     139.7100107,
@@ -77,9 +77,9 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "你好 恵馨閣",
     [
-      "https://images.app.goo.gl/oj9sV8EKXVtqjTsG8",
-      "https://images.app.goo.gl/XHu7gVd3LHcavRzh9",
-      "https://images.app.goo.gl/VtKuVJFMDCnSwoB68",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/33013670.jpg",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/32457452.jpg",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/31443464.jpg",
     ],
     35.5629749,
     139.711337,
@@ -89,9 +89,9 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "金春新館",
     [
-      "https://images.app.goo.gl/TxsU2ySrKxMeJ3ED9",
-      "https://images.app.goo.gl/51kexi39XDpwZgQy5",
-      "https://images.app.goo.gl/vco9Jut2ZvVTz33g6",
+      "https://www.hotpepper.jp/IMGH/71/87/P020257187/P020257187_480.jpg",
+      "https://www.hotpepper.jp/IMGH/90/54/P022699054/P022699054_480.jpg",
+      "https://www.hotpepper.jp/IMGH/70/03/P025767003/P025767003_480.jpg",
     ],
     35.5619727,
     139.7100965,
@@ -101,9 +101,9 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "アジアン大衆酒場 ワルンバリ",
     [
-      "https://images.app.goo.gl/JjYkrCCREGzB2k9k7",
-      "https://images.app.goo.gl/yLwFihrryExmG5BZ7",
-      "https://images.app.goo.gl/PxwxKsVgZ94oSt7x7",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/31859415.jpg",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/21099776.jpg",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/21099780.jpg",
     ],
     35.5619616,
     139.7112708,
@@ -113,9 +113,9 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "ベトナムレストラン ティティ",
     [
-      "https://images.app.goo.gl/LJAyq1Zm5gbzkxvD6",
-      "https://images.app.goo.gl/NsVPqfhMiyisK6gr9",
-      "https://images.app.goo.gl/WzhqoDRJPg6DxmsM8",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/33010073.jpg",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/33010076.jpg",
+      "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/27992891.jpg",
     ],
     35.5624677,
     139.7176205,
