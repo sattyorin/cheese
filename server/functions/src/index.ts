@@ -20,6 +20,7 @@ import { addCouponData } from "./data/addCoupon";
 import { addRestaurantData } from "./data/addRestaurantData";
 import { addAlbumData } from "./lib/album/addAlbumData";
 import { getAlbumData } from "./lib/album/getAlbumData";
+import { findTravelById } from "./lib/album/findTravelById";
 
 admin.initializeApp();
 
@@ -46,14 +47,25 @@ export const getTravel = onRequest(async (request, response) => {
   const restaurant = await getRestaurant(getRestaurantArgs);
   const restaurantCoupon = await getRestaurantCoupon(travelQuery.rank);
 
-  await addAlbumData(sento, restaurant, travelQuery.pub);
+  const travel = await addAlbumData(
+    sento,
+    restaurant,
+    sentoCoupon,
+    restaurantCoupon
+  );
 
-  response.status(200).send({
-    sento: sento,
-    sentoCoupon: sentoCoupon,
-    restaurant: restaurant,
-    restaurantCoupon: restaurantCoupon,
-  });
+  response.status(200).send(travel);
+});
+
+export const getTravelById = onRequest(async (request, response) => {
+  response.set("Access-Control-Allow-Origin", "*");
+  response.set("Access-Control-Allow-Methods", "GET");
+
+  const userId = request.query["userId"] as string;
+
+  const travel = await findTravelById(userId);
+
+  response.status(200).send(travel);
 });
 
 export const getAlbum = onRequest(async (request, response) => {

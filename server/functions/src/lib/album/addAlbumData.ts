@@ -5,24 +5,26 @@ import { Restaurant } from "../../data/addRestaurantData";
 export const addAlbumData = async (
   sento: Sento,
   restaurant: Restaurant,
-  pub: number
+  sentoCoupon: any,
+  restaurantCoupon: any
 ) => {
-  const db = admin.firestore();
-
-  const ref = await db.collection("album");
+  const ref = await admin.firestore().collection("album");
 
   const length = (await ref.get()).size;
 
   const userId = "user" + length.toString();
 
-  await ref.add(
-    JSON.parse(
-      JSON.stringify({
-        id: userId,
-        sento: sento,
-        restaurant: restaurant,
-        pub: pub,
-      })
-    )
+  const travel = JSON.parse(
+    JSON.stringify({
+      userId: userId,
+      sento: sento,
+      restaurant: restaurant,
+      sentoCoupon: sentoCoupon,
+      restaurantCoupon: restaurantCoupon,
+    })
   );
+
+  await ref.add(travel);
+
+  return travel;
 };
