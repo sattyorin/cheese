@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 
-class Coupon {
+export class Coupon {
   constructor(title: string, rank: number, genre: number) {
     this.title = title;
     this.rank = rank;

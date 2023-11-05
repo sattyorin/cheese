@@ -7,7 +7,7 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-import { onRequest } from "firebase-functions/v2/https";
+import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { log } from "firebase-functions/logger";
 import { getTravelQuery } from "./lib/coupon/getQuery";
@@ -20,47 +20,82 @@ import { addCouponData } from "./data/addCoupon";
 import { addRestaurantData } from "./data/addRestaurantData";
 import { addAlbumData } from "./lib/album/addAlbumData";
 import { getAlbumData } from "./lib/album/getAlbumData";
+import { findTravelById } from "./lib/album/findTravelById";
 
 admin.initializeApp();
 
-export const addData = onRequest(async (request, response) => {
-  log("addData was called.");
-  await addSentoData();
-  await addCouponData();
-  await addRestaurantData();
+const addData = functions
+  .region("asia-northeast1")
+  .https.onRequest(async (request, response) => {
+    log("addData was called.");
+    await addSentoData();
+    await addCouponData();
+    await addRestaurantData();
 
-  response.status(200).send({ message: "data added" });
-});
-
-export const getTravel = onRequest(async (request, response) => {
-  response.set("Access-Control-Allow-Origin", "*");
-  response.set("Access-Control-Allow-Methods", "GET");
-
-  const travelQuery = getTravelQuery(request);
-
-  const { genre, ...getSentoArgs } = travelQuery;
-  const { sauna, tennen, rank, ...getRestaurantArgs } = travelQuery;
-
-  const sento = await getSento(getSentoArgs);
-  const sentoCoupon = await getSentoCoupon(travelQuery.rank);
-  const restaurant = await getRestaurant(getRestaurantArgs);
-  const restaurantCoupon = await getRestaurantCoupon(travelQuery.rank);
-
-  await addAlbumData(sento, restaurant, travelQuery.pub);
-
-  response.status(200).send({
-    sento: sento,
-    sentoCoupon: sentoCoupon,
-    restaurant: restaurant,
-    restaurantCoupon: restaurantCoupon,
+    response.status(200).send({ message: "data added" });
   });
-});
 
-export const getAlbum = onRequest(async (request, response) => {
-  response.set("Access-Control-Allow-Origin", "*");
-  response.set("Access-Control-Allow-Methods", "GET");
+const getTravel = functions
+  .region("asia-northeast1")
+  .https.onRequest(async (request, response) => {
+    response.set("Access-Control-Allow-Origin", "*");
+    response.set("Access-Control-Allow-Methods", "GET");
 
-  const albums = await getAlbumData();
+    const travelQuery = getTravelQuery(request);
 
-  response.status(200).send(albums);
-});
+    const { genre, ...getSentoArgs } = travelQuery;
+    const { sauna, tennen, rank, ...getRestaurantArgs } = travelQuery;
+
+    const sento = await getSento(getSentoArgs);
+    const sentoCoupon = await getSentoCoupon(travelQuery.rank);
+    const restaurant = await getRestaurant(getRestaurantArgs);
+    const restaurantCoupon = await getRestaurantCoupon(travelQuery.rank);
+
+    const travel = await addAlbumData(
+      sento,
+      restaurant,
+      sentoCoupon,
+      restaurantCoupon
+    );
+
+    response.status(200).send(travel);
+  });
+
+const getTravelById = functions
+  .region("asia-northeast1")
+  .https.onRequest(async (request, response) => {
+    response.set("Access-Control-Allow-Origin", "*");
+    response.set("Access-Control-Allow-Methods", "GET");
+
+    const userId = request.query["userId"] as string;
+
+    const travel = await findTravelById(userId);
+
+    response.status(200).send(travel);
+  });
+
+const getAlbum = functions
+  .region("asia-northeast1")
+  .https.onRequest(async (request, response) => {
+    response.set("Access-Control-Allow-Origin", "*");
+    response.set("Access-Control-Allow-Methods", "GET");
+
+    const albums = await getAlbumData();
+
+    response.status(200).send(albums);
+  });
+
+// TODO
+const postLike = functions
+  .region("asia-northeast1")
+  .https.onRequest(async (request, response) => {
+    response.set("Access-Control-Allow-Origin", "*");
+    response.set("Access-Control-Allow-Methods", "GET");
+
+    request.body();
+  });
+
+exports.addData = addData;
+exports.getTravel = getTravel;
+exports.getTravelById = getTravelById;
+exports.getAlbum = getAlbum;
