@@ -5,12 +5,20 @@ import backgroundImage from './../images/mountains.jpg';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
-import { Box, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+} from '@mui/material';
 import BottomBar from '../components/BottomBar';
 
 function Boards() {
   const [itineraries, setItineraries] = useState<Itinerary[] | null>();
-  const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME + "/getAlbum";
+  const apiUri =
+    'https://' + process.env.REACT_APP_ALBUM_HOSTNAME + '/getAlbum';
   const apiLikeUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
   const [position, setPosition] = useState(0);
   const [myUserId, setMyUserId] = useState(1);
@@ -31,7 +39,7 @@ function Boards() {
   const handleButtonClick = (likedUserId: string) => {
     const requestData = {
       myUserId,
-      likedUserId
+      likedUserId,
     };
 
     // fetch('/like-api-endpoint', {
@@ -57,6 +65,9 @@ function Boards() {
         style={{
           background: `url(${backgroundImage})`,
           backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
           height: '100vh',
         }}
       >
@@ -65,7 +76,12 @@ function Boards() {
           {itineraries?.map((itinerary, index) => (
             <Card
               key={index}
-              sx={{ border: '2px solid #000', display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, marginBottom: 2 }}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                marginBottom: 2,
+              }}
               data-aos="fade-up"
             >
               <CardMedia
@@ -86,7 +102,11 @@ function Boards() {
                 </Typography>
                 <Button
                   variant="contained"
-                  style={{ backgroundColor: '#f0f0f0' }}
+                  style={{
+                    backgroundColor: '#f0f0f0',
+                    marginTop: '12px',
+                    marginBottom: '12px',
+                  }}
                   onClick={() => handleButtonClick(itinerary.userId)}
                 >
                   行きたい
@@ -95,6 +115,7 @@ function Boards() {
             </Card>
           ))}
         </Box>
+        <Box height="52px" />
       </div>
       <BottomBar />
     </>
