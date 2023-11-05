@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import History from './pages/History';
 import ItineraryPage from './pages/Itinerary';
+import Boards from './pages/Boards';
 
 interface MyContextType {
   id: string;
@@ -17,8 +18,8 @@ interface MyContextType {
 export const MyContext = React.createContext<MyContextType>({
   id: '',
   isCheckedIn: false,
-  setId: () => {},
-  setIsCheckedIn: () => {},
+  setId: () => { },
+  setIsCheckedIn: () => { },
 });
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path={`/`} element={<History />} />
           <Route path={`/home/`} element={<Home />} />
           <Route path={`/itinerary/`} element={<ItineraryPage />} />
+          <Route path={`/Boards/`} element={<Boards />} />
         </Routes>
       </BrowserRouter>
     </MyContext.Provider>
