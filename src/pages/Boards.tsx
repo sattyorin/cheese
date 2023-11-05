@@ -8,8 +8,7 @@ import BottomBar from '../components/BottomBar';
 
 function Boards() {
   const [itineraries, setItineraries] = useState<Itinerary[] | null>();
-
-  const apiUri = 'https://' + process.env.REACT_ALBUM_HOSTNAME;
+  const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
   useLayoutEffect(() => {
     fetch(apiUri)
       .then((res) => res.json())
@@ -46,7 +45,7 @@ function Boards() {
               />
               <CardContent>
                 <Typography variant="h5" component="div">
-                  {itinerary.userId}
+                  id: {itinerary.id}
                 </Typography>
               </CardContent>
             </Card>
