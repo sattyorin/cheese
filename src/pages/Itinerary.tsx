@@ -15,6 +15,37 @@ import {
 import { MyContext } from '../App';
 import { Itinerary } from '../models/Interfaces';
 
+interface Sento {
+  distance: number;
+  ganban: boolean;
+  imageUrl: string[];
+  latitude: number;
+  name: string;
+  sauna: boolean;
+  longitude: number;
+  tennen: boolean;
+}
+interface Coupon {
+  genre: number;
+  rank: number;
+  title: string;
+}
+interface Restaurant {
+  alcohol: boolean;
+  distance: number;
+  imageUrl: string[];
+  latitude: number;
+  name: string;
+  genre: number;
+  longitude: number;
+}
+interface ApiResponse {
+  sento: Sento;
+  sentoCoupon: Coupon;
+  restaurant: Restaurant;
+  restaurantCoupon: Coupon;
+}
+
 function getGenreLabelFromNum(genreNum: number) {
   switch (genreNum) {
     case 1:
@@ -29,7 +60,7 @@ function getGenreLabelFromNum(genreNum: number) {
 }
 
 export default function ItineraryPage() {
-  const [data, setData] = useState<Itinerary | null>();
+  const [data, setData] = useState<ApiResponse | null>();
   const { id } = useContext(MyContext);
   const apiUri =
     'https://' +
@@ -45,7 +76,7 @@ export default function ItineraryPage() {
         .then((res) => {
           return res.json();
         })
-        .then((data: Itinerary) => {
+        .then((data: ApiResponse) => {
           console.log(data);
           setData(data);
         });
