@@ -6,11 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Users from './pages/Users';
-import Boards from './pages/Boards';
 import Itinerary from './pages/Itinerary';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import History from './pages/History';
+import Boards from './pages/Boards';
 
 const darkTheme = createTheme({
   palette: {
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
     element: <Users />,
   },
   {
-    path: '/Boards',
+    path: '/boards',
     element: <Boards />,
   },
 ]);
@@ -52,7 +52,7 @@ root.render(
   <ThemeProvider theme={darkTheme}>
     <CssBaseline />
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <App />
     </React.StrictMode>
   </ThemeProvider>,
 );

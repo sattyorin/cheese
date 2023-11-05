@@ -24,11 +24,12 @@ import {
   Typography,
 } from '@mui/material';
 import TimelineOneline from '../components/TimelineOneline';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import RankEmblem from './../images/Gold.png';
 import { useNavigate } from 'react-router-dom';
 import backgroundImage from './../images/milky-way.jpg';
+import { MyContext } from '../App';
 
 export default function History() {
   const [nowTime, setNowTime] = useState(new Date());
@@ -66,6 +67,8 @@ export default function History() {
       setNowTime(date);
     }, 1000);
   }, []);
+
+  const { setIsCheckedIn } = useContext(MyContext);
 
   return (
     <>
@@ -116,6 +119,7 @@ export default function History() {
                   } else {
                     setModalOpen(true);
                     setStartTime(null);
+                    setIsCheckedIn(true);
                     setTimeout(() => {
                       navigate('/home');
                     }, 3000);

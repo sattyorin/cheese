@@ -9,13 +9,16 @@ import BottomBar from '../components/BottomBar';
 function Boards() {
   const [itinerary, setItinerary] = useState<Itinerary[] | null>();
 
-  const apiUri = 'https://' + process.env.REACT_ALBUM_HOSTNAME;
+  const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
   useLayoutEffect(() => {
     fetch(apiUri)
       .then((res) => res.json())
       .then((data: Itinerary[]) => {
+        console.log(data);
         setItinerary(data);
       });
+
+    console.log(itinerary);
   }, []);
 
   const image1 =
