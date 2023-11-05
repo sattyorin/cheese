@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import { MyContext } from '../App';
 import { Itinerary } from '../models/Interfaces';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 interface Sento {
   distance: number;
@@ -40,6 +41,7 @@ interface Restaurant {
   longitude: number;
 }
 interface ApiResponse {
+  likes: string[];
   sento: Sento;
   sentoCoupon: Coupon;
   restaurant: Restaurant;
@@ -73,9 +75,7 @@ export default function ItineraryPage() {
     if (id !== '') {
       console.log(apiUri);
       fetch(apiUri)
-        .then((res) => {
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((data: ApiResponse) => {
           console.log(data);
           setData(data);
@@ -130,7 +130,21 @@ export default function ItineraryPage() {
               {data.restaurant.imageUrl.map((url) => (
                 <img src={url} width="100%" />
               ))}
-              <Typography variant="h6" p={4} pb={4} align="center">
+              <Typography variant="h6" p={4} pb={2} align="center">
+                行きたい
+              </Typography>
+              {data.likes.map((like) => (
+                <Card sx={{ p: 3, m: 2 }}>
+                  <Stack direction="row">
+                    <FavoriteIcon />
+                    <Typography align="center" ml={1}>
+                      {like}さんがいいねしました
+                    </Typography>
+                  </Stack>
+                </Card>
+              ))}
+
+              <Typography variant="h6" p={4} pb={4} pt={2} align="center">
                 クーポン
               </Typography>
               <Card sx={{ display: 'flex', marginX: 2, mb: 2 }}>

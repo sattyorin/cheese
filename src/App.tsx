@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import History from './pages/History';
 import ItineraryPage from './pages/Itinerary';
+import Boards from './pages/Boards';
 
 interface MyContextType {
   id: string;
@@ -38,6 +39,9 @@ function App() {
           <Route path={`/`} element={<History />} />
           <Route path={`/home/`} element={<Home />} />
           <Route path={`/itinerary/`} element={<ItineraryPage />} />
+          {/* 追記 */}
+          <Route path={`/boards`} element={<Boards />} />
+          {/* 追記 */}
         </Routes>
       </BrowserRouter>
     </MyContext.Provider>
