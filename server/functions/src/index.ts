@@ -85,6 +85,16 @@ const getAlbum = functions
     response.status(200).send(albums);
   });
 
+// TODO
+const postLike = functions
+  .region("asia-northeast1")
+  .https.onRequest(async (request, response) => {
+    response.set("Access-Control-Allow-Origin", "*");
+    response.set("Access-Control-Allow-Methods", "GET");
+
+    request.body();
+  });
+
 exports.addData = addData;
 exports.getTravel = getTravel;
 exports.getTravelById = getTravelById;
