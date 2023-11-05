@@ -34,11 +34,11 @@ export default function BottomBar() {
           icon={<PhotoAlbumIcon />}
           onClick={() => navigate('/itinerary/')}
         />
-        {/* <BottomNavigationAction
+        <BottomNavigationAction
           label="アルバム"
           icon={<LibraryBooksIcon />}
           onClick={() => navigate('/boards/')}
-        /> */}
+        />
       </BottomNavigation>
     </Paper>
   );
