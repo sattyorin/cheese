@@ -1,21 +1,54 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState, useEffect } from 'react';
 import { Itinerary } from '../models/Interfaces';
 import TopBar from '../components/TopBar';
 import backgroundImage from './../images/mountains.jpg';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 import BottomBar from '../components/BottomBar';
 
 function Boards() {
   const [itineraries, setItineraries] = useState<Itinerary[] | null>();
   const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
+  const apiLikeUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
+  const [position, setPosition] = useState(0);
+  const [myUserId, setMyUserId] = useState(1);
+
   useLayoutEffect(() => {
+    AOS.init();
     fetch(apiUri)
       .then((res) => res.json())
       .then((data: Itinerary[]) => {
         setItineraries(data);
       });
   }, []);
+
+  useEffect(() => {
+    AOS.refresh();
+  }, [position]);
+
+  const handleButtonClick = (likedUserId: number) => {
+    const requestData = {
+      myUserId,
+      likedUserId
+    };
+
+    fetch('/like-api-endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
 
   return (
     <>
@@ -30,7 +63,11 @@ function Boards() {
         <Box height="48px" />
         <Box p={3}>
           {itineraries?.map((itinerary, index) => (
-            <Card key={index} sx={{ border: '2px solid #000', display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, marginBottom: 2 }}>
+            <Card
+              key={index}
+              sx={{ border: '2px solid #000', display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, marginBottom: 2 }}
+              data-aos="fade-up"
+            >
               <CardMedia
                 component="img"
                 alt={`Image 1 for ${itinerary.sento.name}`}
@@ -45,8 +82,15 @@ function Boards() {
               />
               <CardContent>
                 <Typography variant="h5" component="div">
-                  id: {itinerary.id}
+                  id: {itinerary.userId}
                 </Typography>
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: '#f0f0f0' }}
+                  onClick={() => handleButtonClick(itinerary.userId)}
+                >
+                  行きたい
+                </Button>
               </CardContent>
             </Card>
           ))}
@@ -58,3 +102,4 @@ function Boards() {
 }
 
 export default Boards;
+
