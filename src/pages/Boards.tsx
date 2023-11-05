@@ -1,32 +1,62 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState, useEffect } from 'react';
 import { Itinerary } from '../models/Interfaces';
 import TopBar from '../components/TopBar';
 import backgroundImage from './../images/mountains.jpg';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+} from '@mui/material';
 import BottomBar from '../components/BottomBar';
 
 function Boards() {
-  const [itinerary, setItinerary] = useState<Itinerary[] | null>();
-
+  const [itineraries, setItineraries] = useState<Itinerary[] | null>();
   const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
+  const apiLikeUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
+  const [position, setPosition] = useState(0);
+  const [myUserId, setMyUserId] = useState(1);
+
   useLayoutEffect(() => {
+    AOS.init();
     fetch(apiUri)
       .then((res) => res.json())
       .then((data: Itinerary[]) => {
-        console.log(data);
-        setItinerary(data);
+        setItineraries(data);
       });
-
-    console.log(itinerary);
   }, []);
 
-  const image1 =
-    'https://onsen.nifty.com/cms_image/onsen/255-elizabeth/onsen001499/211110_t01_s.JPG';
-  const image2 =
-    'https://san-tatsu.jp/assets/uploads/2020/08/06144707/d6855078f26a75d301ce7fba8e37be56-1500x1000.jpg';
-  const title = 'Title';
-  const description = 'Description';
+  useEffect(() => {
+    AOS.refresh();
+  }, [position]);
+
+  const handleButtonClick = (likedUserId: string) => {
+    const requestData = {
+      myUserId,
+      likedUserId,
+    };
+
+    fetch('/like-api-endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
   return (
     <>
       <TopBar />
@@ -39,34 +69,45 @@ function Boards() {
       >
         <Box height="48px" />
         <Box p={3}>
-          <Card
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <CardMedia
-              component="img"
-              alt="Image 1"
-              image={image1}
-              sx={{ width: 250, marginTop: 2, marginBottom: 2 }}
-            />
-            <CardMedia
-              component="img"
-              alt="Image 2"
-              image={image2}
-              sx={{ width: 250, marginTop: 2, marginBottom: 2 }}
-            />
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {description}
-              </Typography>
-            </CardContent>
-          </Card>
+          {itineraries?.map((itinerary, index) => (
+            <Card
+              key={index}
+              sx={{
+                border: '2px solid #000',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: 300,
+                marginBottom: 2,
+              }}
+              data-aos="fade-up"
+            >
+              <CardMedia
+                component="img"
+                alt={`Image 1 for ${itinerary.sento.name}`}
+                image={itinerary.sento.imageUrl[0]}
+                sx={{ width: 250, marginTop: 2, marginBottom: 2 }}
+              />
+              <CardMedia
+                component="img"
+                alt={`Image 2 for ${itinerary.restaurant.name}`}
+                image={itinerary.restaurant.imageUrl[0]}
+                sx={{ width: 250, marginTop: 2, marginBottom: 2 }}
+              />
+              <CardContent>
+                <Typography variant="h5" component="div">
+                  id: {itinerary.userId}
+                </Typography>
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: '#f0f0f0' }}
+                  onClick={() => handleButtonClick(itinerary.userId)}
+                >
+                  行きたい
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </Box>
       </div>
       <BottomBar />

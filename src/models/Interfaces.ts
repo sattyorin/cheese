@@ -28,7 +28,6 @@ export interface Restaurant {
 export interface Itinerary {
   userId: string;
   sento: Sento;
-  sentoCoupon: Coupon;
   restaurant: Restaurant;
-  restaurantCoupon: Coupon;
+  pub: number;
 }
