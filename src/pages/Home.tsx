@@ -1,4 +1,5 @@
 import {
+  Backdrop,
   BottomNavigation,
   BottomNavigationAction,
   Box,
@@ -28,7 +29,7 @@ import {
   MobileTimePicker,
 } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import EmailIcon from '@mui/icons-material/Email';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -37,6 +38,8 @@ import BottomBar from '../components/BottomBar';
 
 import backgroundImage from './../images/mountains.jpg';
 import { useNavigate } from 'react-router-dom';
+import { MyContext } from '../App';
+import { Itinerary } from '../models/Interfaces';
 
 export default function Home() {
   const nowTime = new Date();
@@ -46,14 +49,14 @@ export default function Home() {
   const [moveByTrain, setMoveByTrain] = useState('0');
   const [moveTime, setMoveTime] = useState('10');
   const [genre, setGenre] = useState('1');
-  const [alcohol, setAlcohol] = useState('0');
   const [sauna, setSauna] = useState('0');
-  const [kusuriyu, setKusuriyu] = useState('0');
   const [tennnenn, setTennenn] = useState('0');
 
   const navigate = useNavigate();
 
   const backgroundImageUrl = 'url(./../images/mountains.jpg)';
+
+  const { isCheckedIn, setId } = useContext(MyContext);
 
   return (
     <>
@@ -161,11 +164,23 @@ export default function Home() {
           </Card>
           <Card sx={{ mt: 3, opacity: 0.9 }}>
             <Button
+              disabled={timeErrorMessage !== null}
               variant="text"
               size="large"
               color="inherit"
               sx={{ paddingY: 2, fontSize: 24, width: '100%' }}
-              onClick={() => navigate('/itinerary')}
+              onClick={() => {
+                const apiUri =
+                  'https://' +
+                  process.env.REACT_APP_HOSTNAME +
+                  `/getTravel?moveTime=${moveTime}&genre=${genre}&sauna=${sauna}&tennen=${tennnenn}&rank=3`;
+                fetch(apiUri)
+                  .then((res) => res.json())
+                  .then((data: Itinerary) => {
+                    setId(data.userId);
+                  });
+                navigate('/itinerary');
+              }}
             >
               旅に出る
             </Button>
@@ -174,6 +189,13 @@ export default function Home() {
       </div>
 
       <BottomBar />
+
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={!isCheckedIn}
+      >
+        <Typography>先にチェックインしてください。</Typography>
+      </Backdrop>
 
       {/* <Grid container spacing={4} padding={4}>
         <Grid item xs={6}>

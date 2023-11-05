@@ -8,24 +8,30 @@ export default function BottomBar() {
   const navigate = useNavigate();
   return (
     <Paper
-      sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
+      sx={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: (theme) => theme.zIndex.drawer + 2,
+      }}
       elevation={3}
     >
       <BottomNavigation showLabels>
         <BottomNavigationAction
           label="あなたの記録"
           icon={<TimelineIcon />}
-          onClick={() => navigate('/history')}
+          onClick={() => navigate('/')}
         />
         <BottomNavigationAction
           label="きょうの旅へ"
           icon={<LocalAirportIcon />}
-          onClick={() => navigate('/home')}
+          onClick={() => navigate('/home/')}
         />
         <BottomNavigationAction
           label="旅程"
           icon={<LibraryBooksIcon />}
-          onClick={() => navigate('/itinerary')}
+          onClick={() => navigate('/itinerary/')}
         />
       </BottomNavigation>
     </Paper>

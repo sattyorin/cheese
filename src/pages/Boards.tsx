@@ -5,7 +5,14 @@ import backgroundImage from './../images/mountains.jpg';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
-import { Box, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+} from '@mui/material';
 import BottomBar from '../components/BottomBar';
 
 function Boards() {
@@ -28,10 +35,10 @@ function Boards() {
     AOS.refresh();
   }, [position]);
 
-  const handleButtonClick = (likedUserId: number) => {
+  const handleButtonClick = (likedUserId: string) => {
     const requestData = {
       myUserId,
-      likedUserId
+      likedUserId,
     };
 
     fetch('/like-api-endpoint', {
@@ -41,8 +48,8 @@ function Boards() {
       },
       body: JSON.stringify(requestData),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log('Success:', data);
       })
       .catch((error) => {
@@ -65,7 +72,14 @@ function Boards() {
           {itineraries?.map((itinerary, index) => (
             <Card
               key={index}
-              sx={{ border: '2px solid #000', display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, marginBottom: 2 }}
+              sx={{
+                border: '2px solid #000',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: 300,
+                marginBottom: 2,
+              }}
               data-aos="fade-up"
             >
               <CardMedia
@@ -102,4 +116,3 @@ function Boards() {
 }
 
 export default Boards;
-

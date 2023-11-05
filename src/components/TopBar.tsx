@@ -13,7 +13,10 @@ import { useNavigate } from 'react-router-dom';
 export default function TopBar() {
   const navigate = useNavigate();
   return (
-    <AppBar position="fixed">
+    <AppBar
+      position="fixed"
+      sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
+    >
       <Toolbar variant="dense">
         <Typography
           variant="h6"
