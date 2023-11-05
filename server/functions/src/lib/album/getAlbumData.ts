@@ -7,9 +7,9 @@ export const getAlbumData = async () => {
 
   const albumSnapShot = await ref.get();
 
-  var albumData: string[] = [];
+  var albumData: any[] = [];
   albumSnapShot.forEach((album) => {
-    albumData.push(JSON.stringify(album.data()));
+    albumData.push(JSON.parse(JSON.stringify(album.data())));
   });
 
   return JSON.parse(JSON.stringify(albumData));
