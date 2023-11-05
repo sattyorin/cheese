@@ -85,6 +85,7 @@ const getAlbum = functions
     response.status(200).send(albums);
   });
 
+/*
 // TODO
 const postLike = functions
   .region("asia-northeast1")
@@ -92,8 +93,25 @@ const postLike = functions
     response.set("Access-Control-Allow-Origin", "*");
     response.set("Access-Control-Allow-Methods", "GET");
 
-    request.body();
+    const myUserId = request.body["myUserId"] as string;
+    const likedUserId = request.body["likedUserId"] as string;
+
+    const ref = await admin.firestore().collection("like");
+
+    const existedUser = await ref.where("userId", "==", myUserId).get();
+    if (existedUser.empty) {
+      await ref.add(
+        JSON.parse(
+          JSON.stringify({
+            userId: myUserId,
+            likeUserId: [likedUserId],
+          })
+        )
+      );
+    } else {
+    }
   });
+  */
 
 exports.addData = addData;
 exports.getTravel = getTravel;

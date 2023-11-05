@@ -10,5 +10,10 @@ export const findTravelById = async (userId: string) => {
     travelData = travel.data();
   });
 
-  return JSON.parse(JSON.stringify(travelData));
+  return JSON.parse(
+    JSON.stringify({
+      ...(travelData as unknown as object),
+      likes: ["user0", "user100"],
+    })
+  );
 };

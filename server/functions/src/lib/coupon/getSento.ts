@@ -21,15 +21,19 @@ export const getSento = async ({
     }
   })();
 
-  const sentoCandidate = await sentoRef
-    .where("distance", "==", distance)
-    .where("sauna", "==", sauna === 1)
-    .where("tennen", "==", tennen === 1)
-    .limit(1)
-    .get();
+  var sentoCandidate = await sentoRef.where("distance", "==", distance);
+
+  if (sauna === 1) {
+    sentoCandidate = await sentoCandidate.where("sauna", "==", true);
+  }
+  if (tennen === 1) {
+    sentoCandidate = await sentoCandidate.where("tennen", "==", true);
+  }
+
+  const sentoFinalCandidate = await sentoCandidate.limit(1).get();
 
   var sentoData: string = "";
-  sentoCandidate.forEach((sento) => {
+  sentoFinalCandidate.forEach((sento) => {
     sentoData = JSON.stringify(sento.data());
   });
 

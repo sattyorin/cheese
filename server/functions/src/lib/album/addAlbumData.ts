@@ -21,6 +21,7 @@ export const addAlbumData = async (
       restaurant: restaurant,
       sentoCoupon: sentoCoupon,
       restaurantCoupon: restaurantCoupon,
+      likes: [],
     })
   );
 
