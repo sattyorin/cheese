@@ -17,7 +17,7 @@ import BottomBar from '../components/BottomBar';
 
 function Boards() {
   const [itineraries, setItineraries] = useState<Itinerary[] | null>();
-  const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
+  const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME + "/getTravel";
   const apiLikeUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
   const [position, setPosition] = useState(0);
   const [myUserId, setMyUserId] = useState(1);
@@ -41,20 +41,20 @@ function Boards() {
       likedUserId,
     };
 
-    fetch('/like-api-endpoint', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    // fetch('/like-api-endpoint', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(requestData),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log('Success:', data);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
   };
 
   return (
@@ -98,13 +98,13 @@ function Boards() {
                 <Typography variant="h5" component="div">
                   id: {itinerary.userId}
                 </Typography>
-                <Button
+                {/* <Button
                   variant="contained"
                   style={{ backgroundColor: '#f0f0f0' }}
                   onClick={() => handleButtonClick(itinerary.userId)}
                 >
                   行きたい
-                </Button>
+                </Button> */}
               </CardContent>
             </Card>
           ))}
