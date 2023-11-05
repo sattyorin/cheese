@@ -5,19 +5,12 @@ import backgroundImage from './../images/mountains.jpg';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Button,
-} from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 import BottomBar from '../components/BottomBar';
 
 function Boards() {
   const [itineraries, setItineraries] = useState<Itinerary[] | null>();
-  const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME + "/getTravel";
+  const apiUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME + "/getAlbum";
   const apiLikeUri = 'https://' + process.env.REACT_APP_ALBUM_HOSTNAME;
   const [position, setPosition] = useState(0);
   const [myUserId, setMyUserId] = useState(1);
@@ -38,7 +31,7 @@ function Boards() {
   const handleButtonClick = (likedUserId: string) => {
     const requestData = {
       myUserId,
-      likedUserId,
+      likedUserId
     };
 
     // fetch('/like-api-endpoint', {
@@ -72,14 +65,7 @@ function Boards() {
           {itineraries?.map((itinerary, index) => (
             <Card
               key={index}
-              sx={{
-                border: '2px solid #000',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                width: 300,
-                marginBottom: 2,
-              }}
+              sx={{ border: '2px solid #000', display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, marginBottom: 2 }}
               data-aos="fade-up"
             >
               <CardMedia
@@ -98,13 +84,13 @@ function Boards() {
                 <Typography variant="h5" component="div">
                   id: {itinerary.userId}
                 </Typography>
-                {/* <Button
+                <Button
                   variant="contained"
                   style={{ backgroundColor: '#f0f0f0' }}
                   onClick={() => handleButtonClick(itinerary.userId)}
                 >
                   行きたい
-                </Button> */}
+                </Button>
               </CardContent>
             </Card>
           ))}
