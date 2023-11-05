@@ -29,6 +29,7 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "鳥万",
     [
+      "https://hackmd.io/_uploads/Bk4KVFVma.png",
       "https://san-tatsu.jp/assets/uploads/2020/08/07092816/b8dee31f8ace94f9597bab0b3bda8591-750x500.jpg",
       "https://shochu-hiball.jp/shitamachi/column/monogatari/image/article16_img1.jpg",
       "https://c-r.gnst.jp/mecicolle/photo/report/5b/f8/11444/11444_report_1_2.jpg",
@@ -41,6 +42,7 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "豚番長 京急蒲田店",
     [
+      "https://hackmd.io/_uploads/rkCOVtNQT.png",
       "https://imgfp.hotp.jp/IMGH/88/36/P037608836/P037608836_480.jpg",
       "https://images.miil.me/j/030823c2-2e66-11ec-bd3e-06f1f1f9355e.orig.jpg",
       "https://images.miil.me/j/4b07ce68-a41c-11eb-a9b6-06f1f1f9355e.orig.jpg",
@@ -53,6 +55,7 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "トンマーゾ",
     [
+      "https://hackmd.io/_uploads/SkaGEKV76.png",
       "https://aqi.iccj.or.jp/wp-content/uploads/2019/08/DSC_0022.jpg",
       "https://aqi.iccj.or.jp/wp-content/uploads/2019/08/640x640_rect_103132931.jpg",
       "https://1000bero.net/wp-content/uploads/2023/03/IMG_7761-1360x1020.jpg",
@@ -65,6 +68,7 @@ const restaurants: Restaurant[] = [
   new Restaurant(
     "ピザランド",
     [
+      "https://hackmd.io/_uploads/SJOOEt4X6.png",
       "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/32517824.jpg",
       "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/30591947.jpg",
       "https://ximg.retty.me/crop/s400x400/q80/das/-/retty/img_repo/l/01/27915102.jpg",
