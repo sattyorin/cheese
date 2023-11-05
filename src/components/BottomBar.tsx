@@ -3,6 +3,7 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import { useNavigate } from 'react-router-dom';
 import LocalAirportIcon from '@mui/icons-material/LocalAirport';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import PhotoAlbumIcon from '@mui/icons-material/PhotoAlbum';
 
 export default function BottomBar() {
   const navigate = useNavigate();
@@ -19,20 +20,25 @@ export default function BottomBar() {
     >
       <BottomNavigation showLabels>
         <BottomNavigationAction
-          label="あなたの記録"
+          label="記録"
           icon={<TimelineIcon />}
           onClick={() => navigate('/')}
         />
         <BottomNavigationAction
-          label="きょうの旅へ"
+          label="きょうの旅"
           icon={<LocalAirportIcon />}
           onClick={() => navigate('/home/')}
         />
         <BottomNavigationAction
           label="旅程"
-          icon={<LibraryBooksIcon />}
+          icon={<PhotoAlbumIcon />}
           onClick={() => navigate('/itinerary/')}
         />
+        {/* <BottomNavigationAction
+          label="アルバム"
+          icon={<LibraryBooksIcon />}
+          onClick={() => navigate('/boards/')}
+        /> */}
       </BottomNavigation>
     </Paper>
   );

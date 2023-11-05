@@ -130,21 +130,8 @@ export default function ItineraryPage() {
               {data.restaurant.imageUrl.map((url) => (
                 <img src={url} width="100%" />
               ))}
-              <Typography variant="h6" p={4} pb={2} align="center">
-                行きたい
-              </Typography>
-              {data.likes.map((like) => (
-                <Card sx={{ p: 3, m: 2 }}>
-                  <Stack direction="row">
-                    <FavoriteIcon />
-                    <Typography align="center" ml={1}>
-                      {like}さんがいいねしました
-                    </Typography>
-                  </Stack>
-                </Card>
-              ))}
 
-              <Typography variant="h6" p={4} pb={4} pt={2} align="center">
+              <Typography variant="h6" p={4} align="center">
                 クーポン
               </Typography>
               <Card sx={{ display: 'flex', marginX: 2, mb: 2 }}>
@@ -173,6 +160,19 @@ export default function ItineraryPage() {
                   alt="Live from space album cover"
                 />
               </Card>
+              <Typography variant="h6" p={4} pb={2} pt={0} align="center">
+                行きたい
+              </Typography>
+              {data.likes.map((like) => (
+                <Card sx={{ p: 3, m: 2 }}>
+                  <Stack direction="row">
+                    <FavoriteIcon />
+                    <Typography align="center" ml={1}>
+                      {like}さんがいいねしました
+                    </Typography>
+                  </Stack>
+                </Card>
+              ))}
             </>
           ) : (
             <Stack alignContent="center" alignItems="center" mt={4}>
